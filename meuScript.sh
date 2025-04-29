@@ -10,12 +10,12 @@ sudo yum update -y >> $logs 2>&1 # redireciona a saída do comando para ser escr
 
 # Instalando o Apache
 echo "[ETAPA 2/10] Instalando o servidor Apache..." | tee -a $logs
-sudo yum install -y httpd >> $logs 2>&1
+sudo yum install -y apache2 >> $logs 2>&1
 
 # Ativando o serviço do servidor apache
 echo "[ETAPA 3/10] Ativando o serviço do servidor Apache no sistema..." | tee -a $logs
-sudo systemctl start httpd >> $logs 2>&1 # inicializa o serviço do servidor apache
-sudo systemctl enable httpd >> $logs 2>&1 # ativa o serviço do servidor apache para iniciar automaticamente no boot
+sudo systemctl start apache2 >> $logs 2>&1 # inicializa o serviço do servidor apache
+sudo systemctl enable apache2 >> $logs 2>&1 # ativa o serviço do servidor apache para iniciar automaticamente no boot
 
 # instalando o git 
 echo "[ETAPA 4/10] Instalando o git no sistema..." | tee -a $logs
@@ -34,12 +34,12 @@ sudo chmod -R 755 /var/www/html/ >> $logs 2>&1
 
 # Reiniciando o Apache e verificando o status do serviço
 echo "[ETAPA 8/10] Reiniciando o Apache..." | tee -a $logs
-sudo systemctl restart httpd >> $logs 2>&1 # reinicia o serviço do apache
+sudo systemctl restart apache2 >> $logs 2>&1 # reinicia o serviço do apache
 
 
 # verificação final do status do serviço
 echo "[ETAPA 9/10] Verificando status do Apache..." | tee -a $logs
-sudo systemctl status httpd >> $logs 2>&1
+sudo systemctl status apache2 >> $logs 2>&1
 
 # Enviando solicitação POST
 echo "[ETAPA 10/10] Enviando solicitação POST para https://difusaotech.com.br/lab/aws/index.php" | tee -a $logs # envia uma solicitação de postagem ao site difusaotech
